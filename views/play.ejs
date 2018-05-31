@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Puzzle 15</title>
+</head>
+<body>
+  <center>
+    <h1>Puzzle 15</h1>
+    
+    <table cellspacing=0 cellpadding=5 border=1>
+      <% for(let i = 0; i < game.board.xlen; i++) { %>
+        <tr>
+        <% for(let j = 0; j < game.board.ylen; j++) { %>
+          <td style="text-align: center">
+            <% let val = game.board.pieces[i * game.board.xlen + j]; %>
+            <%- val === 0 ? "&nbsp;" : val %>
+          </td>
+        <% } %>
+        </tr>
+      <% } %>
+
+    </table>
+
+    <p>what's your next move ?</p>
+    <form action="/play" method="post">
+    <table>
+    <% for(let i = 0; i < moves.length; i++) { %>
+      <tr>
+        <td><input <%= i === 0 ? "checked" : "" %> type="radio" name="move" value="<%= JSON.stringify({undo: false, x1: moves[i].x1, y1: moves[i].y1, x2: moves[i].x2, y2: moves[i].y2}) %>"></td>
+        <td><%= game.board.pieces[game.board.xlen * moves[i].x2 + moves[i].y2 ] %></td>
+      </tr>
+    <% } %>
+    <% if (game.lastSteps.length > 0) { %>
+      <tr>
+        <td><input type="radio" name="move" value="<%= JSON.stringify({undo: true}) %>"></td>
+        <td>Undo</td>
+      </tr>
+    <% } %>
+    </table>
+    <input type=hidden name="game" value="<%= JSON.stringify(game)%>">
+    <button type=submit>Do It</button>
+    </form>
+  </center>
+</body>
+</html>

@@ -1,0 +1,37 @@
+{
+  "name": "puzzle15",
+  "version": "1.0.0",
+  "private": true,
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "dotenv-safe": "^5.0.1",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "method-override": "^2.3.10",
+    "request": "^2.87.0",
+    "request-promise": "^4.2.2",
+    "swagger-jsdoc": "^1.9.7",
+    "swagger-tools": "^0.10.3",
+    "uuid": "^3.2.1",
+    "winston": "^2.4.2"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "lint": "^1.1.2",
+    "mocha": "^5.2.0",
+    "mock-require": "^3.0.2",
+    "sinon": "^5.0.10",
+    "sinon-express-mock": "^2.0.4"
+  },
+  "scripts": {
+    "lint": "esw app.js src/**/*.js --color -f simple-detail",
+    "watch-lint": "npm run lint -- --watch",
+    "start": "node app.js",
+    "test": "mocha --require test/support/env --reporter spec test/**/*.test.js",
+    "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --require test/support/env --check-leaks test/**/*.spec.js",
+    "cov-cobertura": "istanbul report cobertura"
+  }
+}
